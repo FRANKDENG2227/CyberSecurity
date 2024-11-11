@@ -20,9 +20,9 @@ import javax.servlet.http.Part;
 
 @WebServlet({"/FileUploadServlet"})
 @MultipartConfig(
-        fileSizeThreshold = 10485760,
-        maxFileSize = 52428800L,
-        maxRequestSize = 104857600L
+        fileSizeThreshold = 1024*1024*10,
+        maxFileSize = 1024*1024*50,
+        maxRequestSize = 1024*1024*100
 )
 public class FileUploadServlet extends HttpServlet {
     private static final long serialVersionUID = 205242440643911308L;
@@ -45,7 +45,9 @@ public class FileUploadServlet extends HttpServlet {
         }
 
         String message = "Result";
-        String content = "";
+        String content = new Scanner(new File(uploadFilePath + File.separator +
+                fileName)).useDelimiter("\\Z").next();
+        /*String content = "";
         File uploadedFile = new File(uploadFilePath + File.separator + fileName);
         if (uploadedFile.exists() && uploadedFile.length() > 0) {
             if (fileName.endsWith(".txt")) {
@@ -59,7 +61,7 @@ public class FileUploadServlet extends HttpServlet {
             }
         } else {
             content = "File is empty or not found.";
-        }
+        }*/
         response.getWriter().write(message + "<BR>" + content);
 
         // Database connection details
