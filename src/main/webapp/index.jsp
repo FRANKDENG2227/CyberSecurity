@@ -66,12 +66,12 @@
                             return response.json();
                         })
                         .then(data => {
-                            console.log("Fetched data:", data);
+                            //console.log("Fetched data:", data);
                             contentList.innerHTML = ""; // Clear any existing content
                             contentList.style.display = 'block'; // Ensure the list is displayed
 
                             data.forEach(content => {
-                                console.log("Processing content:", content);
+                                //console.log("Processing content:", content);
                                 const listItem = document.createElement('li');
                                 listItem.className = 'content-item';
                                 listItem.innerHTML = '<h2>' + content.fileName + '</h2>' +
